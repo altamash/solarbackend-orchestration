@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ACCOUNT-SERVICE
+  datasource:
+    username: dataadmin
+    url: jdbc:sqlserver://orchdevdb.database.windows.net:1433;databaseName=orchdevdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    password: solaR@dmiN1235
+    connectionTimeout: 20000
+    maxPoolSize: 2
+    idleTimeout: 28800
+    minIdle: 5
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+    hibernate:
+      ddl-auto: update
+server:
+  port: '8085'

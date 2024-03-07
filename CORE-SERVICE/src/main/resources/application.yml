@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: CORE-SERVICE
+  datasource:
+    username: dataadmin
+    url: jdbc:sqlserver://orchdevdb.database.windows.net:1433;databaseName=orchdevdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    password: solaR@dmiN1235
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+    hibernate:
+      ddl-auto: update
+#  config:
+#    import: "optional:configserver:${CONFIG_SERVER:http://localhost:8000}"
+server:
+  port: '8082'
+  servlet:
+    context-path: /core
+
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 160000000
+#        readTimeout: 160000000
+#  forward-headers-strategy: framework
+#springdoc:
+#  version: '@springdoc.version@'
+
+springdoc:
+  swagger-ui.doc-expansion: none
+#  packagesToScan: com.orchware.core
+
+#swagger:
+##  host: ${BEHOST}
+#  host: http://localhost:8080

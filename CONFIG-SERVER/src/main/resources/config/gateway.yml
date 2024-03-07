@@ -1,0 +1,56 @@
+server:
+  port: 8080
+  forward-headers-strategy: framework
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+      routes:
+        - id: orchestration
+#          uri: lb://orchestration
+          uri: http://localhost:8081
+          predicates:
+            - Path=/orchestration/**
+          filters:
+            - RewritePath=/orchestration/(?<path>.*), /$\{path}
+        - id: commons-service
+#          uri: lb://commons-service
+          uri: http://localhost:8088
+          predicates:
+            - Path=/commons/**
+          filters:
+            - RewritePath=/commons/(?<path>.*), /$\{path}
+        - id: openapi
+          uri: http://localhost:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+
+#springdoc:
+#  swagger-ui:
+#    urls:
+#      - name: orchestration
+#        url: /v3/api-docs/orchestration
+#      - name: commons
+#        url: /v3/api-docs/commons

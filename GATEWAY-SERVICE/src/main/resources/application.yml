@@ -1,0 +1,106 @@
+server:
+  port: 8080
+#  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+#    config:
+#      enabled: false
+#    config:
+#      request-read-timeout: 10000
+#      request-connect-timeout: 10000
+    gateway:
+#      httpclient:
+#        connect-timeout: 15000
+#        response-timeout: 15s
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+#  main:
+#    web-application-type: reactive
+#    allow-bean-definition-overriding: 'true'
+
+jwt:
+  secretKey: I3hOuPeAlD5sytwySQp4vK3mlJTk37aGwKdLZKyir7HwDMW0I62YRxm8Pk2rYWa
+  #secret key - should be encrypted
+#springdoc:
+#  version: '@springdoc.version@'
+#  swagger-ui:
+#    use-root-path: true
+
+#springdoc:
+#  api-docs:
+#    enabled: true
+#    urls:
+#      - http://localhost:8081/v3/api-docs/orchestration
+#      - http://localhost:8088/v3/api-docs/commons
+#
+#  swagger-ui:
+#    urls:
+#      - name: employee
+#        url: /v3/api-docs/employee
+#      - name: department
+#        url: /v3/api-docs/department
+#      - name: organization
+#        url: /v3/api-docs/organization
+
+
+#spring:
+#  main:
+#    banner-mode: 'off'
+
+logging:
+  level:
+    root: INFO
+
+#springdoc:
+#  swagger-ui:
+#    path: /
+
+#  enable-native-support: true
+#  api-docs:
+#    groups:
+#      enabled: true
+#    enabled: true
+#  group-configs:
+#    - group: api-gateway
+#      packages-to-scan:
+#        - com.microservice.gateway
+#      display-name: API Gateway
+#    - group: commons-service
+#      paths-to-match:
+#        - /commons/**
+#      display-name: Commons Service
+#  swagger-ui:
+#    config-url: /v3/api-docs/swagger-config
+#    url: /v3/api-docs
+#    urls:
+#      - url: /v3/api-docs
+#        name: API Gateway
+#      - url: /commons-service/v3/api-docs
+#        name: Commons Service
+
+springdoc:
+  swagger-ui:
+#    config-url: /v3/api-docs/swagger-config
+#    url: /v3/api-docs
+    urls:
+      - name: Auth
+        url: /v3/api-docs/auth
+      - name: Core
+        url: /v3/api-docs/core/core
+      - name: Commons
+        url: /v3/api-docs/commons/commons
+  swagger-ui.doc-expansion: none
+
+#swagger:
+##  host: ${BEHOST}
+#  host: http://localhost:8080

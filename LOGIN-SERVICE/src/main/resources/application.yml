@@ -1,0 +1,28 @@
+server:
+  port: '8081'
+
+spring:
+  application:
+    name: LOGIN-SERVICE
+  cloud:
+    config:
+      import-check:
+        enabled: false
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+
+springdoc:
+  swagger-ui.doc-expansion: none
+
+#swagger:
+##  host: ${BEHOST}
+#  host: http://localhost:8080
+
+jwt:
+
+  token:

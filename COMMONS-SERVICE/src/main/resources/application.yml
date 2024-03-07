@@ -1,0 +1,79 @@
+spring:
+  application:
+    name: COMMONS-SERVICE
+  datasource:
+    username: dataadmin
+    url: jdbc:sqlserver://orchdevdb.database.windows.net:1433;databaseName=orchdevdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    password: solaR@dmiN1235
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+    hibernate:
+      ddl-auto: update
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  profiles:
+    include:
+      - cache
+  cache:
+    jcache:
+      provider: org.ehcache.jsr107.EhcacheCachingProvider
+#  config:
+#    import: "optional:configserver:${CONFIG_SERVER:http://localhost:8000}"
+  kafka:
+    bootstrap-servers: pkc-56d1g.eastus.azure.confluent.cloud:9092
+
+server:
+  port: '8083'
+  servlet:
+    context-path: /commons
+
+#application-description: App Description
+#application-version: App Version
+#springdoc:
+#  api-docs:
+#    enabled: true
+#  swagger-ui:
+#    enabled: true
+#  version: '@springdoc.version@'
+
+
+#swagger:
+#  resources:
+#    - name: i18nmessage
+#      url: http://localhost:8088/api/v2/api-docs
+#      version: 1.0
+#eureka:
+#  instance:
+#    hostname: localhost
+
+#springdoc:
+#  version: '@springdoc.version@'
+
+
+
+
+# User defined properties follow
+app:
+  profile: local
+  storage:
+    blobService: https://devstoragesi.blob.core.windows.net
+    container: dev
+    azureBlobSasToken: ?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiyx&se=2023-12-31T17:29:34Z&st=2023-01-02T09:29:34Z&spr=https&sig=Rm36UsxcFqzdFVi3n2tsQPIlmfpAlmvhhuMnpV%2Fp5zU%3D
+
+topic:
+  name:
+    message: orch_topic
+
+springdoc:
+  swagger-ui.doc-expansion: none
+
+#swagger:
+##  host: ${BEHOST}
+#  host: http://localhost:8080
+
+ribbon:
+  ReadTimeout: 160000000
+  ConnectTimeout: 160000000
